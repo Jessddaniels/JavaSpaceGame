@@ -266,3 +266,17 @@ git remote add origin https://github.com/jessddaniels/Hello-World
 git push origin master
 git remote add origin https://github.com/Jessddaniels/Hello-World
 git push origin master
+git status
+git add .bash_history
+git status
+git add .bash_profile
+git add .bashrc
+git add .inputrc
+git status
+git add .profile
+git addHello-World/
+git add Hello-World/
+git add spatial-cognition-2013.wiki/
+git status
+git commit
+run cmd
