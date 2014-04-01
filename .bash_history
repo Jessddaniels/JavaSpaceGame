@@ -280,3 +280,35 @@ git add spatial-cognition-2013.wiki/
 git status
 git commit
 run cmd
+git clone https://github.com/Jessddaniels/JessWantsToPractice.git
+git clone https://github.com/Jessddaniels/JessWantsToPractice.git
+git status
+git status
+git push
+git commit -m "something"
+git push
+git status
+git add -A
+git status
+git push
+git status
+git commit -m "jess"
+git push -A
+git push
+git status
+git pull
+git status
+git status
+git
+git push origin
+git status
+git status
+git pull
+git status
+ls
+ls
+ls
+ls
+git push
+ls
+git status
