@@ -1,1 +1,0 @@
-Given a destination, the player will be asked to reach the destination in the shortest amount of time or distance travelled. There will be several paths, and each path will be better or worse than others.

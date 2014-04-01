@@ -1,1 +1,0 @@
-Given a room with scavenger hunt items removed, the player is asked to identify which items from the scavenger hunt list were found in the room.
