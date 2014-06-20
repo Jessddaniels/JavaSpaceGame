@@ -16,11 +16,13 @@ import java.io.File;
 public class game extends Core implements KeyListener, MouseMotionListener, MouseListener, MouseWheelListener{
 
 	public static void main(String args[]) {
-      new game().run();
+      game jess = new game();
+      jess.run();
+      //new game().run();
+      //new game().runStartScreen();
 	}
-   
    private long startTime = System.currentTimeMillis();
-   private Player p1 = new Player();
+   public Player p1 = new Player();
    ArrayList<EnemyShip> enemyList = new ArrayList<>();
    private boolean lost = false;
 	private String mess ="";
@@ -29,6 +31,7 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
    Image gameOver = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\backgroundGameOver.jpg").getImage();
    Image youWin = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\backgroundYouWin.jpg").getImage();
 	Point lazerPoint;
+   boolean lazerAlive;
    Level level1 = new Level(1);
    private String win = "";
    MyThread secondThread = new MyThread("secondThread", 6000);
@@ -57,7 +60,7 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
    }
 
    public void theLevel() {
-      if (level1.placeEnemies(1,startTime,System.currentTimeMillis(),enemyList.size(),s) != null) {
+      if (level1.placeEnemies(1,startTime,getCumTime() - 2 *totalWePaused,enemyList.size(),s) != null) {
       enemyList.add(level1.placeEnemies(1,startTime,System.currentTimeMillis(), enemyList.size(), s));
       }
    }
@@ -71,7 +74,7 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
       //draws player
 		g.drawImage(p1.getImage(), Math.round(p1.getX()), Math.round(p1.getY()), null);
       //draws lazer
-      if (lazerPoint != null) {
+      if (lazerAlive == true && lazerPoint != null) {
          g.setColor(Color.RED);
          g.drawLine((int)(p1.getX()+p1.getWidth()),(int) (p1.getY()+p1.getHeight()/2-3), (int)(lazerPoint.getX()), (int)(lazerPoint.getY()-3));
          g.drawLine((int)(p1.getX()+p1.getWidth()),(int) (p1.getY()+p1.getHeight()/2+3), (int)(lazerPoint.getX()), (int)(lazerPoint.getY())+3);
@@ -86,7 +89,7 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
       }
       //draws enemies
       for (int i = 0; i<enemyList.size(); i++) {
-         if (enemyList.get(i).isAlive) {
+         if (enemyList.get(i).Alive()) {
    		   g.drawImage(enemyList.get(i).getImage(), Math.round(enemyList.get(i).getX()), Math.round(enemyList.get(i).getY()), null);
          }
       }
@@ -110,37 +113,39 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
    public void setMessEnergy(){
       messEnergy ="Energy Level: " + p1.getEnergy() + "%";
    }
-	
+	public Player getP1(){
+      return p1;
+   }
 	public void update(long timePassed){
       
       checkCollisions();
       theLevel();
       //ship velocity after colloding with game edge
 		if(p1.getX() <= 0){
-			p1.setVelocityX((float)0.1);
+			p1.setVelocityX((float)0.01);
 		} else if(p1.getX()+p1.getWidth() >= s.getWidth()) {
-			p1.setVelocityX((float)(-0.1));
+			p1.setVelocityX((float)(-0.01));
 		}
 		if(p1.getY() <= 0){
-			p1.setVelocityY((float)0.1);
+			p1.setVelocityY((float)0.01);
 		} else if(p1.getY() + p1.getHeight() >= s.getHeight()) {
-			p1.setVelocityY((float)(-0.1));
+			p1.setVelocityY((float)(-0.01));
 		}
       //updates enemies
       for (int i = 0; i<enemyList.size(); i++) {
-         enemyList.get(i).update(timePassed);
+         enemyList.get(i).update(timePassed, p1);
       }
       //updates player 1
 		p1.update(timePassed);
       setMessEnergy();
       if (p1.getEnergy() < 2.0) 
-      lazerPoint = null;
+      lazerAlive = false;
       //if you lost
       if (lost) {
          win = "loss";
       }
       //if you win
-      if (System.currentTimeMillis() - startTime >69000) {
+      if (-startTime + getCumTime() -2 *totalWePaused >70000) {
          win = "win";
       }
 	}
@@ -157,13 +162,14 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
 	//*****************************************************************************************
    //***************The following deals with game responses to the mouse**********************
 	public void mousePressed(MouseEvent e) {
-		mess = "you pressed down the mouse";
+		//mess = "you pressed down the mouse";
       if (p1.getEnergy() > 2.5) {
          if(!(p1.getLazerOn())){
             p1.addEnergy(-0.5);
          }
          Point point1 = new Point(e.getLocationOnScreen());
          lazerPoint = point1;
+         lazerAlive = true;
          p1.setLazerOn(true);
          for (int i = 0; i<enemyList.size(); i++) {
             Rectangle r1 = enemyList.get(i).getBounds();
@@ -173,13 +179,13 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
       		}
    	   }
       } else {
-         lazerPoint = null;
+         lazerAlive = false;
          p1.setLazerOn(false);
       }
 	}
 	public void mouseReleased(MouseEvent e){
-		mess= "you released the mouse";
-      lazerPoint = null;
+		//mess= "you released the mouse";
+      lazerAlive = false;
       p1.setLazerOn(false);
 	}
 	public void mouseClicked(MouseEvent e){
@@ -191,14 +197,14 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
 	
 	//mouse motion interface
 	public void mouseDragged(MouseEvent e){
-		mess="you are dragging the mouse";
+		//mess="you are dragging the mouse";
 	}
 	public void mouseMoved(MouseEvent e){
-		mess = "you are moving the mouse";
+		//mess = "you are moving the mouse";
 	}
 	//wheel interface
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		mess="moving mouse wheel";
+		//mess="moving mouse wheel";
 	}
 	//*****************************************************************************************
    //***************The following deals with game responses to keyboard***********************
@@ -220,8 +226,14 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
 		} else if(keyCode == KeyEvent.VK_W){
 			p1.setVelocityY(- 0.2f);
 			e.consume();
+      } else if(keyCode == KeyEvent.VK_P){
+			setPaused(true);
+			e.consume();
+      } else if(keyCode == KeyEvent.VK_O){
+			setPaused(false);
+			e.consume();
 		} else {
-			mess = "Pressed : " + KeyEvent.getKeyText(keyCode);
+			//mess = "Pressed : " + KeyEvent.getKeyText(keyCode);
 			e.consume();
 		}
 	}
@@ -242,7 +254,7 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
 			e.consume();
 		} else {
 
-		mess = "Released : "+KeyEvent.getKeyText(keyCode);
+		//mess = "Released : "+KeyEvent.getKeyText(keyCode);
 		e.consume();
       }
 	}
