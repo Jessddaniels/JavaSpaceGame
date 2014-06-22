@@ -27,9 +27,9 @@ public class game extends Core implements KeyListener, MouseMotionListener, Mous
    private boolean lost = false;
 	private String mess ="";
    private String messEnergy ="Energy is at " + p1.getEnergy() + "%";
-	Image bg = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\backgroundSpace.jpg").getImage();
-   Image gameOver = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\backgroundGameOver.jpg").getImage();
-   Image youWin = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\backgroundYouWin.jpg").getImage();
+	Image bg = new ImageIcon("Pictures\\backgroundSpace.jpg").getImage();
+   Image gameOver = new ImageIcon("Pictures\\backgroundGameOver.jpg").getImage();
+   Image youWin = new ImageIcon("Pictures\\backgroundYouWin.jpg").getImage();
 	Point lazerPoint;
    boolean lazerAlive;
    Level level1 = new Level(1);

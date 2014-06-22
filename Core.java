@@ -3,12 +3,12 @@ import javax.swing.*;
 
 public abstract class Core {
 	private static DisplayMode modes[] = {
-		new DisplayMode(800,600,32,0),
-		new DisplayMode(800,600,24,0),
+		//new DisplayMode(800,600,32,0),
+		//new DisplayMode(800,600,24,0),
 		new DisplayMode(800,600,16,0),
-		new DisplayMode(6440,480,32,0),
-		new DisplayMode(6440,480,24,0),
-		new DisplayMode(6440,480,16,0)
+		//new DisplayMode(6440,480,32,0),
+		//new DisplayMode(6440,480,24,0),
+		//new DisplayMode(6440,480,16,0)
 	};
    public long cumTime = 0;
    public long timePausedTotal;

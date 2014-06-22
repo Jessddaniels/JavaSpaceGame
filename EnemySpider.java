@@ -2,11 +2,11 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class EnemySpider extends EnemyShip {
-   Image enemyShipImage = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\alienship2.png").getImage();
-   Image enemyShipExplode1Image = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\alienship2Explode1.png").getImage();
-   Image enemyShipExplode2Image = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\alienship2Explode2.png").getImage();
-   Image enemyShipExplode3Image = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\alienship2Explode3.png").getImage();
-   Image enemyShipExplode4Image = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\alienship2Explode4.png").getImage();
+   Image enemyShipImage = new ImageIcon("Pictures\\alienship2.png").getImage();
+   Image enemyShipExplode1Image = new ImageIcon("Pictures\\alienship2Explode1.png").getImage();
+   Image enemyShipExplode2Image = new ImageIcon("Pictures\\alienship2Explode2.png").getImage();
+   Image enemyShipExplode3Image = new ImageIcon("Pictures\\alienship2Explode3.png").getImage();
+   Image enemyShipExplode4Image = new ImageIcon("Pictures\\alienship2Explode4.png").getImage();
    
    public EnemySpider() {
       super();/*
