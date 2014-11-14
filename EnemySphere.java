@@ -2,8 +2,8 @@ import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class EnemySphere extends EnemyShip {
-   Image enemyShipImage = new ImageIcon("Pictures\\AlienShipSphere.png").getImage();
-   Image enemyShipExplode1Image = new ImageIcon("Pictures\\AlienShipSphereExplode1.png").getImage();
+   Image enemyShipImage = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\AlienShipSphere.png").getImage();
+   Image enemyShipExplode1Image = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\AlienShipSphereExplode1.png").getImage();
       public EnemySphere() {
       super();
       super.setImage(enemyShipImage);

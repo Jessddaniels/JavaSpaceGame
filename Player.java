@@ -1,8 +1,8 @@
 import java.awt.*;
 import javax.swing.ImageIcon;
 public class Player {
-	Image p1ShipImage = new ImageIcon("Pictures\\spaceship.png").getImage();
-   ImageIcon p1ShipImageIcon = new ImageIcon("Pictures\\spaceship.png");
+	Image p1ShipImage = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\spaceship.png").getImage();
+   ImageIcon p1ShipImageIcon = new ImageIcon("C:\\Users\\Jess\\Desktop\\Game\\Pictures\\spaceship.pgn");
    private Animation p1Animation;
    private Sprite p1Sprite;
    private double Energy;
